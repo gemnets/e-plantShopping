@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Provider } from 'react-redux'; // Import Provider
-import store from './store'; // Import the store you configured
+import { Provider } from 'react-redux';
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom'; // Change here
+import store from './store';
 import ProductList from './ProductList';
-import './App.css';
 import AboutUs from './AboutUs';
+import './App.css';
 
 function App() {
   const [showProductList, setShowProductList] = useState(false);
@@ -13,29 +14,44 @@ function App() {
   };
 
   return (
-    <Provider store={store}> {/* Wrap your app in Provider */}
-      <div className="app-container">
-        <div className={`landing-page ${showProductList ? 'fade-out' : ''}`}>
-          <div className="background-image"></div>
-          <div className="content">
-            <div className="landing_content">
-              <h1>Welcome To Paradise Nursery</h1>
-              <div className="divider"></div>
-              <p>Where Green Meets Serenity</p>
-              <button className="get-started-button" onClick={handleGetStartedClick}>
-                Get Started
-              </button>
-            </div>
-            <div className="aboutus_container">
+    <Provider store={store}>
+      <Router>
+        <div className="app-container">
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/products">Products</Link>
+            <Link to="/about">About Us</Link>
+          </nav>
+
+          <Switch>
+            <Route path="/" exact>
+              <div className={`landing-page ${showProductList ? 'fade-out' : ''}`}>
+                <div className="background-image"></div>
+                <div className="content">
+                  <div className="landing_content">
+                    <h1>Welcome To Paradise Nursery</h1>
+                    <div className="divider"></div>
+                    <p>Where Green Meets Serenity</p>
+                    <button className="get-started-button" onClick={handleGetStartedClick}>
+                      Get Started
+                    </button>
+                  </div>
+                  <div className="aboutus_container">
+                    <AboutUs />
+                  </div>
+                </div>
+              </div>
+            </Route>
+            <Route path="/products">
+              <ProductList />
+            </Route>
+            <Route path="/about">
               <AboutUs />
-            </div>
-          </div>
+            </Route>
+          </Switch>
         </div>
-        <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
-          <ProductList />
-        </div>
-      </div>
-    </Provider> // End of Provider
+      </Router>
+    </Provider>
   );
 }
 
