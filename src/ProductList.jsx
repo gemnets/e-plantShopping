@@ -237,18 +237,26 @@ function ProductList() {
     };
 
     const handleCartClick = (e) => {
-        e.preventDefault();
-        setShowCart(true);
-    };
+    e.preventDefault();
+    setShowCart(true); // Set showCart to true when cart icon is clicked
+};
+const handlePlantsClick = (e) => {
+    e.preventDefault();
+    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+    setShowCart(false); // Hide the cart when navigating to About Us
+};
 
-    const handleContinueShopping = (e) => {
-        e.preventDefault();
-        setShowCart(false);
-    };
-
-    const handleAddToCart = (product) => {
-        dispatch(addItem(product)); // Dispatch the addItem action
-    };
+   const handleContinueShopping = (e) => {
+    e.preventDefault();
+    setShowCart(false);
+    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+  };
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+    setAddedToCart((prevState) => ({
+        ...prevState,
+        [product.name]: true,
+    }));
 
     return (
         <div>
