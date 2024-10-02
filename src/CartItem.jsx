@@ -14,9 +14,10 @@ const CartItem = ({ onContinueShopping }) => {
         return cart.reduce((total, item) => total + parseFloat(item.cost) * item.quantity, 0).toFixed(2);
     };
 
-    const handleContinueShopping = () => {
-        window.location.href = '/e-plantShopping/products'; // Redirect to the product page with base URL
-    };
+    const handleContinueShopping = (e) => {
+    onContinueShopping(e);
+};
+    
 
     const handleIncrement = (item) => {
         dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
