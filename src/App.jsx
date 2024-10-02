@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import store from './store';
 import ProductList from './ProductList';
 import AboutUs from './AboutUs';
-import Cart from './Cart'; // Import your Cart component
+import CartItem from './CartItem'; // Import your CartItem component
 import './App.css';
 
 function App() {
@@ -21,8 +21,8 @@ function App() {
           <nav>
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
-            <Link to="/cart">Cart</Link> {/* Link to Cart */}
             <Link to="/about">About Us</Link>
+            <Link to="/cart">Cart</Link> {/* Link to the CartItem page */}
           </nav>
 
           <Switch>
@@ -47,11 +47,11 @@ function App() {
             <Route path="/products">
               <ProductList />
             </Route>
-            <Route path="/cart">
-              <Cart /> {/* Render Cart component */}
-            </Route>
             <Route path="/about">
               <AboutUs />
+            </Route>
+            <Route path="/cart">
+              <CartItem /> {/* Route to the CartItem component */}
             </Route>
           </Switch>
         </div>
