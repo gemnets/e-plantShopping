@@ -15,7 +15,7 @@ const CartItem = ({ onContinueShopping }) => {
     };
 
     const handleContinueShopping = () => {
-        onContinueShopping();
+        window.location.href = '/e-plantShopping/products'; // Redirect to the product page with base URL
     };
 
     const handleIncrement = (item) => {
